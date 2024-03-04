@@ -1,0 +1,24 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Update to latest version
+
+      - name: Build and deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1  # Use a GitHub Pages deployment action
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # Add your GitHub token as a secret
+          BRANCH: gh-pages  # Specify the branch to deploy to (GitHub Pages typically uses this branch)
+          FOLDER: .  # Specify the folder containing your static content
